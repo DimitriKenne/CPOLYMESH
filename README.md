@@ -50,15 +50,15 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
 ## Usage
 
-1. demo
+### demo:
  In order to run the demo you need to open the file demo.py, scroll till its bottom, there provide the following information:
     - The degree of interpolation, deg, greater than 0
 
-        Example: deg = 10
+        Example: deg = 2
 
     - Choose the domain by specifying a number between 0 and 19 inside define_domaine. 
 
-        Example: domain = define_domain(7)
+        Example: domain = define_domain(0)
 
  and finally run the whole file.
 
@@ -73,7 +73,8 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
     - plot each interpolation points set + AM of degree deg on separate figures.
 
     - plot the Lebesgue constants on one figure.
-After running the file demo.py for the first time, you can also type demo(2,define_domain(0)) directly from the terminal in order to run the demo with deg=10 and domain Num. 7. 
+
+After running the file demo.py for the first time, you can also type demo(2,define_domain(0)) directly from the terminal in order to run the demo with deg=2 and domain Num. 0. 
 
 Example
 
