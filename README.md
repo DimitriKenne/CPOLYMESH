@@ -24,7 +24,7 @@ projection operators.
 
 2. **Clone the Repository**:
    ```bash
-   git clone https://github.com/DimitriKenne/your_project.git
+   git clone https://github.com/DimitriKenne/CPOLYMESH.git
    cd your_project
 
 3. Launch Spyder or VSCode:
@@ -39,7 +39,7 @@ projection operators.
 If users prefer not to use Anaconda, then you can install the dependencies directly using pip:
 
 1. Clone the Repository:
-    git clone https://github.com/DimitriKenne/your_project.git
+    git clone https://github.com/DimitriKenne/CPOLYMESH.git
     cd your_project
 
 
