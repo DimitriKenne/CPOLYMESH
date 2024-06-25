@@ -52,7 +52,7 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
 ### demo:
  In order to run the demo you need to open the file demo.py, scroll till its bottom, there provide the following information:
- 
+
     - The degree of interpolation, deg, greater than 0
 
         Example: deg = 2
@@ -65,13 +65,14 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
 
  The demo does:
-    - compute admissible meshes (AM)
 
-    - compute interpolations points: discrete Leja points (DLP), pseudo Leja points (PLP), approximate Fekete points (AFK)
+    - compute admissible meshes (AM),
 
-    - approximate the Lebesgue constant for each of these points as well as for the dicrete least squares approximation (lsqp). The lsqp is performed on the whole AM of degree deg.
+    - compute interpolations points: discrete Leja points (DLP), pseudo Leja points (PLP), approximate Fekete points (AFK),
 
-    - plot each interpolation points set + AM of degree deg on separate figures.
+    - approximate the Lebesgue constant for each of these points as well as for the dicrete least squares approximation (lsqp). The lsqp is performed on the whole AM of degree deg,
+
+    - plot each interpolation points set + AM of degree deg on separate figures,
 
     - plot the Lebesgue constants on one figure.
 
