@@ -53,16 +53,26 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 1. demo
  In order to run the demo you need to open the file demo.py, scroll till its bottom, there provide the following information:
     - The degree of interpolation, deg, greater than 0
+
         Example: deg = 10
+
     - Choose the domain by specifying a number between 0 and 19 inside define_domaine. 
+
         Example: domain = define_domain(7)
+
  and finally run the whole file.
+
+
  The demo does:
     - compute admissible meshes (AM)
+
     - compute interpolations points: discrete Leja points (DLP), pseudo Leja points (PLP), approximate Fekete points (AFK)
-    - approximate the Lebesgue constant for each of these points as well as for the dicrete least squares approximation (lsqp). The lsqp is performed on the whole AM of degree deg 
-    - plot the each interpolation points set + AM of degree deg on separate figures
-    - plot the Lebesgue constants on one figure
+
+    - approximate the Lebesgue constant for each of these points as well as for the dicrete least squares approximation (lsqp). The lsqp is performed on the whole AM of degree deg.
+
+    - plot each interpolation points set + AM of degree deg on separate figures.
+
+    - plot the Lebesgue constants on one figure.
 After running the file demo.py for the first time, you can also type demo(2,define_domain(0)) directly from the terminal in order to run the demo with deg=10 and domain Num. 7. 
 
 Example
@@ -203,7 +213,7 @@ Mesh interp. nodes factor                2
 Card mesh for extracting the nodes       8                                       
 ================================================================================
 
-
+Remark: All figures are save in the folder figures
 
 ## License
 
