@@ -1,5 +1,7 @@
-# CPOLYMESH
+# Python version of CPOLYMESH
+There is a Matlab version whose author is Alvise sommariva. For a full description of the software, see the paper:
 
+Dimitri J. Kenne, Alvise Sommariva and Marco Vianello, CPOLYMESH: Matlab and Python codes for complex polynomial approximation by Chebyshev admissible meshes
 ## Table of Contents
 
 - [Description](#description)
@@ -50,31 +52,32 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
 ## Usage
 
-### demo:
+
+### 1. demo (this is the main demo)
  In order to run the demo you need to open the file demo.py, scroll till its bottom, there provide the following information:
 
-    - The degree of interpolation, deg, greater than 0
+    • The degree of interpolation, deg, greater than 0
 
         Example: deg = 2
 
-    - Choose the domain by specifying a number between 0 and 19 inside define_domaine. 
+    • Choose the domain by specifying a number between 0 and 19 inside define_domaine. 
 
         Example: domain = define_domain(0)
 
  and finally run the whole file.
 
 
- The demo does:
+ The following tasks will be performed for each degree d = 1,..., deg:
 
-    - compute admissible meshes (AM),
+    • compute admissible meshes (AM),
 
-    - compute interpolations points: discrete Leja points (DLP), pseudo Leja points (PLP), approximate Fekete points (AFK),
+    • compute the extremal points: discrete Leja points (DLP), pseudo Leja points (PLP), approximate Fekete points (AFK),
 
-    - approximate the Lebesgue constant for each of these points as well as for the dicrete least squares approximation (lsqp). The lsqp is performed on the whole AM of degree deg,
+    • approximate the Lebesgue constant for each of these points as well as for the dicrete least squares approximation (lsqp). The lsqp is performed on the whole AM of degree deg,
 
-    - plot each interpolation points set + AM of degree deg on separate figures,
+    • plot each interpolation points set + AM of degree deg on separate figures,
 
-    - plot the Lebesgue constants on one figure.
+    • plot the Lebesgue constants on one figure.
 
 After running the file demo.py for the first time, you can also type demo(2,define_domain(0)) directly from the terminal in order to run the demo with deg=2 and domain Num. 0. 
 
@@ -217,6 +220,51 @@ Card mesh for extracting the nodes       8
 ================================================================================
 
 Remark: All figures are save in the folder figures
+
+
+### 2. demo_cleb
+Follow the same instruction as for demo in order to run this demo (you will need to open the file demo_cleb.py from the package lebesgue_constant_evaluator, provide the degree, choose the domain and then run the file.)
+
+The following tasks will be performed:  
+
+    • compute an admissible mesh (AM) of a fixed degree;
+
+    • extract extremal sets;
+
+    • compute a certified Lebesgue constant.
+
+### 3. demo_cpom
+Follow the same instruction as for demo in order to run this demo (you will need to open the file demo_cpom.py from the folder polynomial_mesh_constructor, provide the degree, choose the domain and then run the file.)
+
+The admissible mesh of degree deg will be computed and the points will be shown on a figure.
+
+### 4. demo_cdes
+Follow the same instruction as for demo in order to run this demo (you will need to open the file demo_cdes.py from the folder discrete_extremal_sets_constructor, provide the degree, choose the domain and then run the file.)
+
+The following tasks will be performed:
+
+    • compute an admissible mesh (AM) of a fixed degree;
+
+    • extract the AFP, DLP, PLP extremal sets;
+
+    • plot the extremal points on separate figures
+
+### 5. demo_cfit
+Follow the same instruction as for demo in order to run this demo. You will need to open the file demo_cfit.py from the folder polynomial_projectors, define a function for approximation, provide the degree, choose the domain and then run the file.
+
+The following tasks will be performed for each degree d = 1,..., deg:
+
+    • compute an admissible mesh (AM) of degree d;
+
+    • extract the AFP, DLP, PLP extremal sets;
+
+    • compute the polynomial of interpolation associated with each extremal set and compute the discrete least squares polynomial fitting the whole admissible mesh.
+
+    • compute the error of approximation    
+
+    • plot the error of approximation
+
+
 
 ## License
 

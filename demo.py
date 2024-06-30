@@ -145,11 +145,11 @@ fmt = ["-^", '-*', '-o', '-s']
 # ------------------------------------------------------------------------------
 
 # Set the degree of approximation
-deg = 2
+deg = 5
 
 # To select a domain, choose a number from 1 to 19 and input it into the
 # define_domain function.
-domain = define_domain(0)
+domain = define_domain(5)
 
 # The admissible mesh factor can be modified directly in the call of the demo
 # function provided below.
