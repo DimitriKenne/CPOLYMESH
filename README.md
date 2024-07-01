@@ -89,7 +89,7 @@ Example
  
 ================================================================================
 '''
-domain                                   circle of center 0 and radius 1         
+domain &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;circle of center 0 and radius 1         
 Interp. nodes                            Discrete Leja points                    
 degree                                   1                                       
 Lebesgue Constant AM                     1.3870398453221475                      
