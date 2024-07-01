@@ -60,7 +60,7 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
         Example: deg = 2
 
-    • Choose the domain by specifying a number between 0 and 19 inside define_domaine. 
+    • Choose the domain by specifying a number between 0 and 31 inside define_domaine. 
 
         Example: domain = define_domain(0)
 
@@ -264,7 +264,14 @@ The following tasks will be performed for each degree d = 1,..., deg:
 
     • plot the error of approximation
 
-
+remark: When testing our routines, changing the values inside the python function define_domain(),
+from 0 to 30, will lead to the creation of complex polynomial curves such as: 0. Unit circle, 1.
+Segment [-1,1], 2. Polygon M, 3. Sun, 4. Ellipse, 5. Union of circles, 6. Lune, 7. Cardioid,
+8. 4 lenses, 9. Curve polygon, 10. Limacon, 11. Lissajous, 12. Egg, 13. Rhodonea, 14.
+Habenitch clover, 15. Bifolium, 16. Torpedo, 17. Double egg, 18. L. Sautereau butterfly 1,
+19. L. sautereau Butterfly 2, 20. Borromean circles, 23. Laporte heart, 24. Epicycloid, 25.
+Epitrochoid, 26. Hypocycloid, 27. Nephroid, 28. Talbot curve, 29. Tricuspoid, 30. Rectan-
+gles+circles, 31. 31. Equilateral triangle.
 
 ## License
 
