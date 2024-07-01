@@ -89,20 +89,20 @@ Example
  
 ================================================================================
 '''
-domain &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;circle of center 0 and radius 1         
-Interp. nodes                            Discrete Leja points                    
-degree                                   1                                       
-Lebesgue Constant AM                     1.3870398453221475                      
-Relative err. est.                       0.08239220029239402                     
-Absolute err. est.                       0.1142812647493136                      
-Mesh Leb. const. degree                  1                                       
-Mesh Leb. const. factor                  4                                       
-Mesh Leb. const. constant                1.082392200292394                       
-Card. mesh Leb. const.                   8                                       
-number of interpolation points           2                                       
-Mesh interp. nodes degree                1                                       
-Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4  
+|domain                                   |circle of center 0 and radius 1         
+|Interp. nodes                            |Discrete Leja points                    
+|degree                                   |1                                       
+|Lebesgue Constant AM                     |1.3870398453221475                      
+|Relative err. est.                       |0.08239220029239402                     
+|Absolute err. est.                       |0.1142812647493136                      
+|Mesh Leb. const. degree                  |1                                       
+|Mesh Leb. const. factor                  |4                                       
+|Mesh Leb. const. constant                |1.082392200292394                       
+|Card. mesh Leb. const.                   |8                                       
+|number of interpolation points           |2                                       
+|Mesh interp. nodes degree                |1                                       
+|Mesh interp. nodes factor                |2                                       
+|Card mesh for extracting the nodes       |4  
 '''
 
 ================================================================================
