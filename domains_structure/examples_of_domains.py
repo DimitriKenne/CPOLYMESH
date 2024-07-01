@@ -72,11 +72,12 @@ def define_domain(example):
         28. Talbot curve
         29. Tricuspoid
         30. Rectangles+circles
+        31. Equilateral triangle
 
     Parameters
     ----------
     example : int
-        A number between 0 and 30.
+        A number between 0 and 31.
 
     Returns
     -------
@@ -205,6 +206,10 @@ def define_domain(example):
         curves = domain1.curves+domain2.curves+domain3.curves+domain4.curves
         domain = UnionPolyCurves(curves, 
                                  name = 'Rectangles+circles')
+    elif example == 31:
+        vertices = [np.exp(1j*t) 
+                    for t in np.linspace(np.pi/2,np.pi/2+2*np.pi, 4)]
+        domain = polygon(vertices, 'Equilateral triangle')
     return domain
 
 

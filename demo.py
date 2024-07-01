@@ -150,7 +150,7 @@ deg = 20
 
 # To select a domain, choose a number from 1 to 21 and input it into the
 # define_domain function.
-domain = define_domain(24)
+domain = define_domain(31)
 
 # The admissible mesh factor can be modified directly in the call of the demo
 # function provided below.
