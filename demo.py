@@ -137,6 +137,7 @@ def demo(deg, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
     plt.legend()
     plt.title('Lebesgue constant')
     plt.xlabel('degree')
+    plt.ylim(top = deg)
     plt.show()
 
 
@@ -145,11 +146,11 @@ fmt = ["-^", '-*', '-o', '-s']
 # ------------------------------------------------------------------------------
 
 # Set the degree of approximation
-deg = 5
+deg = 20
 
-# To select a domain, choose a number from 1 to 19 and input it into the
+# To select a domain, choose a number from 1 to 21 and input it into the
 # define_domain function.
-domain = define_domain(5)
+domain = define_domain(29)
 
 # The admissible mesh factor can be modified directly in the call of the demo
 # function provided below.

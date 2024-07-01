@@ -57,7 +57,7 @@ deg = 50
 
 # To select a prebuilt domain, choose a number from 1 to 16 and input it into
 # the define_domain function.
-domain = define_domain(7)
+domain = define_domain(5)
 
 
 demo_cdes(deg, domain)

@@ -29,6 +29,7 @@ see the LICENSE file for details.
 # pylint: disable=invalid-name
 from scipy.interpolate import CubicSpline, BPoly
 import cmath
+import math
 import numpy as np
 from domains_structure.polynomial_curves import PolyCurve, UnionPolyCurves
 # ------------------------------------------------------------------------------
@@ -61,11 +62,19 @@ def define_domain(example):
         18. L. Sautereau Butterfly 1
         19. L. sautereau Butterfly  2
         20. Borromean curve
+        21. Deltoid
+        22. Heart
+        23. Laporte heart
+        24. Epicycloid
+        25. Epitrochoid
+        26. Hypocycloid
+        27. Nephroid
+        28. Talbot curve
 
     Parameters
     ----------
     example : int
-        A number between 0 and 10.
+        A number between 0 and 27.
 
     Returns
     -------
@@ -161,7 +170,40 @@ def define_domain(example):
         domain = butterflysautereau(2)
     elif example == 20:
         domain = borromean(5)
+    elif example == 21:
+        domain = deltoid(5)
+    elif example == 22:
+        domain = heart()
+    elif example ==23:
+        domain = laporte_heart()
+    elif example == 24:
+        domain = epicycloid(1, 3)
+    elif example == 25:
+        domain = epitrochoid(1, 3, 1/2)
+    elif example == 26:
+        domain = hypocycloid(4, 1)
+    elif example == 27:
+        domain = nephroid(1)
+    elif example == 28:
+        domain = talbot(1, 1, 9/10)
+    elif example == 29:
+        vertices1=[0.2111+1j*0.1246, 1.3923+1j*0.1246, 1.3923+1j*1.4454,
+                        0.2111+1j*1.4454, 0.2111+1j*0.1246]
+        domain1 = polygon(vertices1)
+        vertices2=[-0.5-0.25*1j, 1.5-0.25*1j, 1.5+0.5*1j, 
+                   -0.5+0.5*1j, -0.5-0.25*1j]
+        domain2 = polygon(vertices2)
+        vertices3=[0.5, 0.5+1j, 1j, 0, 0.5]
+        domain3 = polygon(vertices3)
+        centers =[0.1378 + 1j*0.4882, 0.8367 + 1J*0.3662, 0.1386 + 1j*0.8068]
+        radii = [1,2/3,1/2]
+        domain4 = union_circles(centers, radii)
+        curves = domain1.curves+domain2.curves+domain3.curves+domain4.curves
+        domain = UnionPolyCurves(curves, 
+                                 name = 'Rectangles+circles')
     return domain
+
+
 # ------------------------------------------------------------------------------
 
 
@@ -381,7 +423,7 @@ def union_circles(Z, R, name='Union of circles'):
     return UnionPolyCurves(curves, name)
 
 
-def sun(center, r, beams=8, beams_lenght=0.5):
+def sun(center, r, beams=4, beams_lenght=0.5):
     '''
     Create a sun by drawing a circle centered at the center with radius r, 
     and attach beams as equispaced segments of length beams_length, positioned 
@@ -504,7 +546,7 @@ def lens(X, R):
 # ------------------------Four lens--------------------------------------------
 
 
-def union_lenses(X=[-1, -1j, 1, 1j, -1], R=[1, 1, 1, 1, 1], name=None):
+def union_lenses(X=None, R=None, name=None):
     """
     Create many lenses
 
@@ -521,7 +563,11 @@ def union_lenses(X=[-1, -1j, 1, 1j, -1], R=[1, 1, 1, 1, 1], name=None):
         See domain_structure.polynomial_curves.py for description.
 
     """
-    if name == None:
+    if X is None and R is None:
+        X=[-1, -1j, 1, 1j, -1]
+        R=[1, 1, 1, 1, 1]
+    
+    if name is None:
         name = f'{len(X)} lenses'
     curves = []
     for i in range(len(X)-1):
@@ -530,7 +576,7 @@ def union_lenses(X=[-1, -1j, 1, 1j, -1], R=[1, 1, 1, 1, 1], name=None):
     return UnionPolyCurves(curves, name)
 
 
-def limacon(a, b, name='limacon'):
+def limacon(a, b, name='Limacon'):
     '''
     Create a Limacon
 
@@ -550,10 +596,11 @@ def limacon(a, b, name='limacon'):
          2. the domain is convex if "a >= 2*b";
          3. the domain is  concave if "b <= a < 2*b".
     '''
+    name = 'Limacon'
     def polynomial(t): return b/2 + a*np.exp(1j*t) + (b/2)*np.exp(2j*t)
     interval = (0, 2*np.pi)
 
-    return PolyCurve(polynomial, interval, 2, 'trig')
+    return PolyCurve(polynomial, interval, 2, 'trig', name)
 
 
 def lissajous(aV, wV, phiV, name=None):
@@ -742,9 +789,9 @@ def butterflysautereau(a, name='L. sautereau Butterfly'):
     return domain
 
 
-def borromean(ndisks):
+def borromean(ndisks, name = 'Borromean circles'):
     '''
-    Create a Borromean ring as an instance of PolyCurve
+    Create a Borromean circles as an instance of PolyCurve
     
     Reference  https://en.wikipedia.org/wiki/Borromean_rings
     ---------
@@ -752,7 +799,7 @@ def borromean(ndisks):
     Parameters
     ----------
     n : int
-        number of disks making the borromean curve.
+        number of disks making Borromean circles.
     return
     ------
     domain : PolyCurve (See domain_structure.polynomial_curves.py for description.)
@@ -760,17 +807,259 @@ def borromean(ndisks):
     
     th=2*np.pi/ndisks
     th0=(np.pi-th)/2
-    curves = []
-    name = 'Borromean curve'
-    
-    for k in range(ndisks):
-        thL=th0+k*th
-        interval = (0, 2*np.pi)
-        polynomial = lambda t: np.sqrt(3)*np.exp(1j*t)+complex(np.cos(thL), np.sin(thL))
-        curves.append(PolyCurve(polynomial, interval, 1, 'trig'))
-    print( f'\n {len(curves)} \n \n' )
-    domain = UnionPolyCurves(curves, name)
+    centers = [np.exp(1j*thL) for thL in np.linspace(th0, th0+2*np.pi, 4)]
+    radii = np.sqrt(3)*np.ones(3)
+    domain = union_circles(centers[:3], radii, name)
     return domain
+
+
+def deltoid(a, name='Deltoid'):
+    '''
+    Create a Deltoid domain of parameters a
+    
+    Reference
+    ---------
+    https://en.wikipedia.org/wiki/Deltoid_curve
+
+    Parameters
+    ----------
+    a : float   
+    name : TYPE, optional
+        The default is 'Deltoid'.
+
+    Returns
+    -------
+    Polycurve (See domain_structure.polynomial_curves.py for description.)
+        The Deltoid of parameters a.
+    '''
+    def polynomial(t): return  2*a*np.exp(1j*t)+a*np.exp(-2j*t)
+    interval = (0, 2*np.pi)
+
+    return PolyCurve(polynomial, interval, 2, 'trig', name)
+
+def heart(name='Heart'):
+    '''
+    Create a heart domain
+    
+    Reference
+    ---------
+    https://mathworld.wolfram.com/HeartCurve.html
+
+    Parameters
+    ----------  
+    name : TYPE, optional
+        The default is 'Heart'.
+
+    Returns
+    -------
+    Polycurve (See domain_structure.polynomial_curves.py for description.)
+        The heart domain.
+    '''
+    def polynomial(t): 
+        y = complex(np.sqrt(2)*(np.sin(t))**3, 
+                    2*np.cos(t)-np.cos(t)**2-np.cos(t)**3)
+        return y
+    interval = (0, 2*np.pi)
+
+    return PolyCurve(polynomial, interval, 3, 'trig', name)
+
+def laporte_heart(name='Laporte heart'):
+    '''
+    Create Laporte heart domain
+    
+    Reference
+    ---------
+    https://mathcurve.com/courbes2d/ornementales/ornementales.shtml
+    % https://it.wiktionary.org/wiki/...
+    % Appendice:Glossario_sulle_curve_matematiche#Cuore_(curve_a_forma_di)
+
+    Parameters
+    ----------  
+    name : TYPE, optional
+        The default is 'Laporte heart'.
+
+    Returns
+    -------
+    Polycurve (See domain_structure.polynomial_curves.py for description.)
+        The heart domain.
+    '''
+    def polynomial(t): 
+        y = complex(np.sin(t)**3, np.cos(t)-np.cos(t)**4)
+        return y
+    interval = (0, 2*np.pi)
+
+    return PolyCurve(polynomial, interval, 4, 'trig', name)
+
+def epicycloid(r, R):
+    '''
+    Create an epicycloid as an instance of PolyCurve
+    
+    Reference
+    ---------
+    https://en.wikipedia.org/wiki/Epicycloid
+
+    Parameters
+    ----------
+    r,R: parameters defining the epicycloid, with r < R, R multiple of r, 
+    (R+r)*cos(t)-r*cos((R+r)*t/r)+i*((R+r)*sin(t)-r*sin((R+r)*t/r))
+
+    Returns
+    -------
+    Polycurve (See domain_structure.polynomial_curves.py for description.)
+
+    '''
+    name = 'Epicycloid'
+    
+    # Check if ceil(R/r) > R/r
+    if math.ceil(R / r) > R / r:
+        raise ValueError('In defining the domain R must be a multiple of r')
+
+    # Check if R < r
+    if R < r:
+        raise ValueError('In defining the domain, choose R >= r')
+    
+    def polynomial(t): 
+        y = complex((R+r)*np.cos(t)-r*np.cos((R+r)*t/r), 
+                    ((R+r)*np.sin(t)-r*np.sin((R+r)*t/r)))
+        return y
+    interval = (0, 2*np.pi)
+    
+    return PolyCurve(polynomial, interval, max(1,(R+r)/r), 'trig', name)
+
+def epitrochoid(r, R, d=-1):
+    '''
+    Create an epitrochoid as an instance of PolyCurve
+    
+    Reference
+    ---------
+    https://en.wikipedia.org/wiki/Epitrochoid
+
+    Parameters
+    ----------
+    r,R: positive floats 
+        parameters defining the epitrochoid, with r < R, R multiple of r.
+    d  : positve float 
+        parameter defining the epitrochoid defined as
+        (R+r)*cos(t)-d*cos((R+r)*t/r)+i*((R+r)*sin(t)-d*sin((R+r)*t/r))
+
+    Returns
+    -------
+    Polycurve (See domain_structure.polynomial_curves.py for description.)
+
+    '''
+    name = 'Epitrochoid'
+    
+    # Check if ceil(R/r) > R/r
+    if math.ceil(R / r) > R / r:
+        raise ValueError('In defining the domain R must be a multiple of r')
+
+    # Check if R < r
+    if R < r:
+        raise ValueError('In defining the domain, choose R >= r')
+    
+    def polynomial(t): 
+        y = complex((R+r)*np.cos(t)-d*np.cos((R+r)*t/r), 
+                    ((R+r)*np.sin(t)-d*np.sin((R+r)*t/r)))
+        return y
+    interval = (0, 2*np.pi)
+    
+    return PolyCurve(polynomial, interval, max(1,(R+r)/r), 'trig', name)
+
+def hypocycloid(a, b):
+    '''
+    Create an hypocycloid as an instance of PolyCurve
+    
+    Reference
+    ---------
+    https://en.wikipedia.org/wiki/hypocycloid
+
+    Parameters
+    ----------
+    a,b: positive floats 
+        parameters defining the hypocycloid, with a/b natural number:
+        (a-b)*cos(t)+b*cos((a-b)*t/b)+i*((a-b)*sin(t)-b*sin((a-b)*t/b))
+
+    Returns
+    -------
+    Polycurve (See domain_structure.polynomial_curves.py for description.)
+
+    '''
+    name = 'Hypocycloid'
+    
+    # Check if abs(floor(a/b) - (a/b)) > 0
+    if abs(math.floor(a / b) - (a / b)) > 0:
+        raise ValueError('a/b is not an integer')
+
+    
+    def polynomial(t): 
+        y = complex((a-b)*np.cos(t)+b*np.cos((a-b)*t/b),
+                        (a-b)*np.sin(t)-b*np.sin((a-b)*t/b))
+        return y
+    interval = (0, 2*np.pi)
+    
+    return PolyCurve(polynomial, interval, max(1,(a-b)/b), 'trig', name)
+
+
+def nephroid(a):
+    '''
+    Create a Nephroid as an instance of PolyCurve
+    
+    Reference
+    ---------
+    https://en.wikipedia.org/wiki/Nephroid
+
+    Parameters
+    ----------
+    a: parameter defining the nephroid
+           a*(3*cos(t)- cos(3*t)+i*(3*sin(t)-sin(3*t))) with "a>0".
+
+    Returns
+    -------
+    Polycurve (See domain_structure.polynomial_curves.py for description.)
+
+    '''
+    name = 'Nephroid'
+    
+    
+    def polynomial(t): 
+        y = a*complex(3*np.cos(t) - np.cos(3*t), 3*np.sin(t) -np.sin(3*t))
+        return y
+    interval = (0, 2*np.pi)
+    
+    return PolyCurve(polynomial, interval, 3, 'trig', name)
+
+
+
+def talbot(a, b, f):
+    '''
+    Create a Talbot curve as an instance of PolyCurve
+    
+    Reference
+    ---------
+    http://facstaff.bloomu.edu/skokoska/curves.pdf (p.44)
+
+    Parameters
+    ----------
+    a,b,f: parameters defining the Talbot curve:
+        (a^2+f^2*(sin(t)).^2).*cos(t)/a+i*(a^2-2*f^2+f^2*(sin(t)).^2).*sin(t)/b
+
+    Returns
+    -------
+    Polycurve (See domain_structure.polynomial_curves.py for description.)
+
+    '''
+    name = 'Talbot curve'
+    
+    
+    def polynomial(t): 
+        y = a*complex((a**2+f**2*np.sin(t)**2)*np.cos(t)/a,
+                      (a**2-2*f**2+f**2*np.sin(t)**2)*np.sin(t)/b)
+        return y
+    interval = (0, 2*np.pi)
+    
+    return PolyCurve(polynomial, interval, 3, 'trig', name)
+    
+    
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 
@@ -843,7 +1132,7 @@ def gallery_union_circles(example=0):
     # COMPLEX DOMAIN AS UNION OF DISKS.
     # IMPORTANT: centers elements are complex numbers.
 
-    name = None
+    name = 'None'
     if example == 0:
         disks = np.array([
             [4.172670690843695e-01, 6.443181301936917e-01, 3.630885392869130e-01],
@@ -965,7 +1254,7 @@ def gallery_polygons(example):
     # IMPORTANT: first and last vertices are equal.
 
     vertices = []
-    name = None
+    name = 'None'
     if example == 0:
         name = 'Unit square [0,1]^2'
         k = 1
@@ -1035,9 +1324,8 @@ def gallery_polygons(example):
 
 
 def gallery_curvpolygon(subexample):
-    P = []
-    vertices = None
-    domain_name = ''
+    vertices = []
+    domain_name = 'None'
 
     # Case 1
     if subexample == 0:

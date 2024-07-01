@@ -97,7 +97,7 @@ def demo_cleb(deg, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
             interp_nodes = 'approximate Fekete points'
         if pts_type[i] == 'lsqp':
             interp_nodes =  'Discrete least square approximation'
-            
+         
         statistics = {
             'domain': domain.name,
             'Interp. nodes': interp_nodes,
@@ -127,7 +127,7 @@ deg = 10
 
 # To select a domain, choose a number from 1 to 16 and input it into the
 # define_domain function.
-domain = define_domain(7)
+domain = define_domain(20)
 
 # The admissible mesh factor can be modified directly in the call of the demo
 # function provided below.

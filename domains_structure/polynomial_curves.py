@@ -67,7 +67,7 @@ class PolyCurve:
 
     '''
 
-    def __init__(self, polynomial, interval, degree, curve_type, name=None):
+    def __init__(self, polynomial, interval, degree, curve_type, name='None'):
         '''
         Initializes a polynomial curve given a parametrization (polynomial),
         its interval of definition, its degree and its polynomial type. 
@@ -142,7 +142,7 @@ class UnionPolyCurves(PolyCurve):
 
     '''
 
-    def __init__(self, list_of_polycurves, name=None):
+    def __init__(self, list_of_polycurves, name='None'):
         '''
         Initializes a union of polynomial curves given a parametrization 
         (polynomial), its interval of definition, its degree and its polynomial 
