@@ -81,10 +81,14 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
 After running the file demo.py for the first time, you can also type demo(2,define_domain(0)) directly from the terminal in order to run the demo with deg=2 and domain Num. 0. 
 
+
+
+
 Example
 
 >> demo(2,define_domain(0))
 
+```
  Demo on computing Lebesgue constant
 
 ================================================================================
@@ -101,7 +105,7 @@ Card. mesh Leb. const.                   8
 number of interpolation points           2                                       
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4                                       
+Card mesh for extracting the nodes       4     
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -117,7 +121,7 @@ Card. mesh Leb. const.                   8
 number of interpolation points           2                                       
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4                                       
+Card mesh for extracting the nodes       4           
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -133,7 +137,7 @@ Card. mesh Leb. const.                   8
 number of interpolation points           2                                       
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4                                       
+Card mesh for extracting the nodes       4      
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -149,7 +153,8 @@ Card. mesh Leb. const.                   8
 number of interpolation points           4                                       
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4                                       
+Card mesh for extracting the nodes       4      
+
 ================================================================================
 
  Demo on computing Lebesgue constant
@@ -168,7 +173,7 @@ Card. mesh Leb. const.                   16
 number of interpolation points           3                                       
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       8                                       
+Card mesh for extracting the nodes       8     
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -184,7 +189,7 @@ Card. mesh Leb. const.                   16
 number of interpolation points           3                                       
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       8                                       
+Card mesh for extracting the nodes       8      
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -200,7 +205,7 @@ Card. mesh Leb. const.                   16
 number of interpolation points           3                                       
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       8                                       
+Card mesh for extracting the nodes       8    
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -216,8 +221,9 @@ Card. mesh Leb. const.                   16
 number of interpolation points           8                                       
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       8                                       
+Card mesh for extracting the nodes       8      
 ================================================================================
+
 
 Remark: All figures are save in the folder figures
 
