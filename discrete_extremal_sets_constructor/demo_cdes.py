@@ -55,7 +55,7 @@ def demo_cdes(deg, domain, pts_type=np.array(['DLP', 'PLP', 'AFP']),
 # Set the degree of approximation
 deg = 50
 
-# To select a prebuilt domain, choose a number from 1 to 16 and input it into
+# To select a prebuilt domain, choose a number from 0 to 30 and input it into
 # the define_domain function.
 domain = define_domain(5)
 

@@ -124,9 +124,9 @@ def plot_adm_mesh(pts, deg=None, display=True):
 # Set the degree of approximation
 deg = 10
 
-# To select a prebuilt domain, choose a number from 1 to 19 and input it into
+# To select a prebuilt domain, choose a number from 0 to 30 and input it into
 # the define_domain function.
-domain = define_domain(0)
+domain = define_domain(30)
 
 # The admissible mesh factor can be modified directly in the call of the demo
 # function provided below.

@@ -70,11 +70,13 @@ def define_domain(example):
         26. Hypocycloid
         27. Nephroid
         28. Talbot curve
+        29. Tricuspoid
+        30. Rectangles+circles
 
     Parameters
     ----------
     example : int
-        A number between 0 and 27.
+        A number between 0 and 30.
 
     Returns
     -------
@@ -187,6 +189,8 @@ def define_domain(example):
     elif example == 28:
         domain = talbot(1, 1, 9/10)
     elif example == 29:
+        domain = tricuspoid(1)
+    elif example == 30:
         vertices1=[0.2111+1j*0.1246, 1.3923+1j*0.1246, 1.3923+1j*1.4454,
                         0.2111+1j*1.4454, 0.2111+1j*0.1246]
         domain1 = polygon(vertices1)
@@ -1059,6 +1063,36 @@ def talbot(a, b, f):
     
     return PolyCurve(polynomial, interval, 3, 'trig', name)
     
+def tricuspoid(a):
+    '''
+    Create a Tricuspoid as an instance of PolyCurve
+    
+    Reference
+    ---------
+    http://facstaff.bloomu.edu/skokoska/curves.pdf (p.46)
+
+    Parameters
+    ----------
+    a: positive parameter defining the tricuspoid curve:
+           a*(2*cos(t)+cos(2*t))+i*(2*sin(t)-sin(2*t))
+
+    Returns
+    -------
+    Polycurve (See domain_structure.polynomial_curves.py for description.)
+
+    '''
+    # Check if a <= 0
+    if a <= 0:
+        raise ValueError('Bad parameter in tricuspoid')
+        
+    name = 'Tricuspoid'
+    
+    def polynomial(t): 
+        y = a*complex(a*(2*np.cos(t)+np.cos(2*t)), 2*np.sin(t)-np.sin(2*t))
+        return y
+    interval = (0, 2*np.pi)
+    
+    return PolyCurve(polynomial, interval, 2, 'trig', name)
     
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------

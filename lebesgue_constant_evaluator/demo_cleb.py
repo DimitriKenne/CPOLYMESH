@@ -125,7 +125,7 @@ fmt = ["-^", '-*', '-o', '-s']
 # Set the degree of approximation
 deg = 10
 
-# To select a domain, choose a number from 1 to 16 and input it into the
+# To select a domain, choose a number from 0 to 30 and input it into the
 # define_domain function.
 domain = define_domain(20)
 
