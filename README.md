@@ -65,19 +65,15 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
     • The degree of interpolation, deg, greater than 0:
 
-        ```
-        deg = 2
-        ```
+        Example: deg = 2
 
     • Choose the domain by specifying a number between 0 and 31 inside define_domaine: 
-        ```
         Example: domain = define_domain(0)
-        ```
 
  and finally run the whole file.
 
 
- The following tasks will be performed for each degree d = 1,..., deg:
+ The following tasks will be performed for each degree $d = 1, \dots, \text{deg}$:
 
     • compute admissible meshes (AM),
 
@@ -239,7 +235,7 @@ Remark: All figures are save in the folder figures
 
 
 ### 2. demo_cleb
-In order to run this demo, open the file demo_cleb.py from the package lebesgue_constant_evaluator, provide the degree, choose the domain and then run the file.)
+In order to run this demo, open the file demo_cleb.py from the package lebesgue_constant_evaluator, provide the degree, choose the domain and then run the file.
 
 The following tasks will be performed:  
 
@@ -268,7 +264,7 @@ The following tasks will be performed:
 ### 5. demo_cfit
 In order to run this demo, open the file demo_cfit.py from the folder polynomial_projectors, define a function for approximation, provide the degree, choose the domain and then run the file.
 
-The following tasks will be performed for each degree d = 1,..., deg:
+The following tasks will be performed for each degree $d = 1, \dots, \text{deg}$:
 
     • compute an admissible mesh (AM) of degree d;
 
