@@ -88,6 +88,7 @@ Example
  Demo on computing Lebesgue constant
  
 ================================================================================
+'''
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            Discrete Leja points                    
 degree                                   1                                       
@@ -101,10 +102,13 @@ Card. mesh Leb. const.                   8
 number of interpolation points           2                                       
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4         
+Card mesh for extracting the nodes       4  
+'''
 
 ================================================================================
+
 ================================================================================
+'''
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            Pseudo Leja points                      
 degree                                   1                                       
@@ -119,9 +123,12 @@ number of interpolation points           2
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
 Card mesh for extracting the nodes       4       
+'''
 
 ================================================================================
+
 ================================================================================
+'''
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            Approximate Fekete points               
 degree                                   1                                       
@@ -136,9 +143,12 @@ number of interpolation points           2
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
 Card mesh for extracting the nodes       4      
+'''
 
 ================================================================================
+
 ================================================================================
+'''
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            Discrete least square approximation     
 degree                                   1                                       
@@ -153,12 +163,14 @@ number of interpolation points           4
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
 Card mesh for extracting the nodes       4          
+'''
 
 ================================================================================
 
  Demo on computing Lebesgue constant
 
 ================================================================================
+'''
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            Discrete Leja points                    
 degree                                   2                                       
@@ -173,9 +185,12 @@ number of interpolation points           3
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
 Card mesh for extracting the nodes       8                
+'''
 
 ================================================================================
+
 ================================================================================
+'''
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            Pseudo Leja points                      
 degree                                   2                                       
@@ -190,9 +205,12 @@ number of interpolation points           3
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
 Card mesh for extracting the nodes       8                    
+'''
 
 ================================================================================
+
 ================================================================================
+'''
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            approximate Fekete points               
 degree                                   2                                       
@@ -207,9 +225,12 @@ number of interpolation points           3
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
 Card mesh for extracting the nodes       8                                
+'''
 
 ================================================================================
+
 ================================================================================
+'''
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            Discrete least square approximation     
 degree                                   2                                       
@@ -224,6 +245,7 @@ number of interpolation points           8
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
 Card mesh for extracting the nodes       8                                      
+'''
 
 ================================================================================
 
