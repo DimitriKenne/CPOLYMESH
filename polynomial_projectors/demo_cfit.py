@@ -78,7 +78,22 @@ def demo_cfit(deg, f, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
     # will contain log_10(errors_on_interp_set_pts)
     errors_0 = [[] for _ in range(n)]
     for d in range(1, deg+1):
-        interp_pts, _ = Cdes(d, domain, adm_mesh_param, pts_type=pts_type)
+        # Compute the interpolation sets of nodes
+        interp_pts, A = Cdes(d, domain, adm_mesh_param, pts_type=pts_type)
+        
+        # Plot the extremal points for the degree d=deg
+        if d == deg:
+            Y_1 = [y.real for y in A]
+            Y_2 = [y.imag for y in A]
+            for i, X in enumerate(interp_pts):
+                if pts_type[i] != 'lsqp':
+                    X_1 = [x.real for x in X]
+                    X_2 = [x.imag for x in X]
+                    plt.plot(X_1, X_2, 'ro', label=pts_type[i], markersize=5)
+                    plt.plot(Y_1, Y_2, 'b.', label='AM', markersize=1)
+                    plt.legend()
+                    plt.axis('equal')
+                    plt.show()
         for i, X in enumerate(interp_pts):
             fX = [f(x) for x in X]
             L = Cfit(d, X, fX, domain_grid)
@@ -92,11 +107,20 @@ def demo_cfit(deg, f, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
                 print('\n Demo discrete least square polynomial')
             else:
                 print('\n Demo polynomial interpolation')
-                print('\n Nodes type:', pts_type[i], '\n')
-            print('\n degree:', d, '\n')
-            print('\n The approximation error is ', error, '\n')
-            print('The approximation error on the nodes set is', error_0)
-
+                nodes_type= pts_type[i]
+            statistics = {
+                'interp_points' : nodes_type,
+                'degree' : d,
+                'Approximation error': error,
+                'Approx. error on interp. pts set': error_0
+                }
+            print("="*80)
+            for key, value in statistics.items():
+               print(f"{key:<40} {value:<40}")
+            print("="*80)
+           
+    # Plot the domain
+        
     # Plot approximation errors
     degrees = np.arange(1, deg+1)
     for i in range(len(pts_type)):
