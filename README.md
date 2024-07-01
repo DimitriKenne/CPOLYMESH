@@ -64,7 +64,6 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
  In order to run this demo you need to open the file demo.py, scroll till its bottom, there provide the following information:
 
     • The degree of interpolation, deg, greater than 0:
-
         Example: deg = 2
 
     • Choose the domain by specifying a number between 0 and 31 inside define_domaine: 
@@ -88,7 +87,7 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 After running the file demo.py for the first time, you can also type demo(2,define_domain(0)) directly from the terminal in order to run the demo with deg=2 and domain Num. 0. 
 
 
-Example
+Example:
 
 >> demo(2,define_domain(0))
 
