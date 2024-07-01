@@ -1,5 +1,5 @@
 # Python version of CPOLYMESH
-There is a Matlab version whose author is Alvise sommariva. For a full description of the software, see the paper:
+There is a Matlab version at https://github.com/alvisesommariva/CPOLYMESH, whose author is Alvise Sommariva. For a full description of the software, see the paper:
 
 Dimitri J. Kenne, Alvise Sommariva and Marco Vianello, CPOLYMESH: Matlab and Python codes for complex polynomial approximation by Chebyshev admissible meshes
 ## Table of Contents
@@ -14,7 +14,7 @@ Dimitri J. Kenne, Alvise Sommariva and Marco Vianello, CPOLYMESH: Matlab and Pyt
 
 ## Description 
 
-CPOLYMESH provide Python codes for polynomial approximation on complex compact sets with connected complement, by Chebyshev-like admissible polynomial meshes on boundaries with piecewise polynomial parametrization. Such meshes have lower cardinality with respect to those previously known. They are used for polynomial least-squares, for the extraction of extremal interpolation sets of Fekete and Leja type,
+CPOLYMESH provides Python codes for polynomial approximation on complex compact sets with connected complement, by Chebyshev-like admissible polynomial meshes on boundaries with piecewise polynomial parametrization. Such meshes have lower cardinality with respect to those previously known. They are used for polynomial least-squares, for the extraction of extremal interpolation sets of Fekete and Leja type,
 as well as for the computation of the uniform norms (Lebesgue constants) of polynomial
 projection operators.
 
@@ -86,7 +86,8 @@ Example
 >> demo(2,define_domain(0))
 
  Demo on computing Lebesgue constant
-
+ 
+'''
 ================================================================================
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            Discrete Leja points                    
@@ -218,12 +219,12 @@ Mesh interp. nodes degree                2
 Mesh interp. nodes factor                2                                       
 Card mesh for extracting the nodes       8                                       
 ================================================================================
-
+'''
 Remark: All figures are save in the folder figures
 
 
 ### 2. demo_cleb
-Follow the same instruction as for demo in order to run this demo (you will need to open the file demo_cleb.py from the package lebesgue_constant_evaluator, provide the degree, choose the domain and then run the file.)
+In order to run this demo, open the file demo_cleb.py from the package lebesgue_constant_evaluator, provide the degree, choose the domain and then run the file.)
 
 The following tasks will be performed:  
 
@@ -234,12 +235,12 @@ The following tasks will be performed:
     • compute a certified Lebesgue constant.
 
 ### 3. demo_cpom
-Follow the same instruction as for demo in order to run this demo (you will need to open the file demo_cpom.py from the folder polynomial_mesh_constructor, provide the degree, choose the domain and then run the file.)
+In order to run this demo, open the file demo_cpom.py from the folder polynomial_mesh_constructor, provide the degree, choose the domain and then run the file.
 
 The admissible mesh of degree deg will be computed and the points will be shown on a figure.
 
 ### 4. demo_cdes
-Follow the same instruction as for demo in order to run this demo (you will need to open the file demo_cdes.py from the folder discrete_extremal_sets_constructor, provide the degree, choose the domain and then run the file.)
+In order to run this demo, open the file demo_cdes.py from the folder discrete_extremal_sets_constructor, provide the degree, choose the domain and then run the file.
 
 The following tasks will be performed:
 
@@ -250,7 +251,7 @@ The following tasks will be performed:
     • plot the extremal points on separate figures
 
 ### 5. demo_cfit
-Follow the same instruction as for demo in order to run this demo. You will need to open the file demo_cfit.py from the folder polynomial_projectors, define a function for approximation, provide the degree, choose the domain and then run the file.
+In order to run this demo, open the file demo_cfit.py from the folder polynomial_projectors, define a function for approximation, provide the degree, choose the domain and then run the file.
 
 The following tasks will be performed for each degree d = 1,..., deg:
 
@@ -265,13 +266,13 @@ The following tasks will be performed for each degree d = 1,..., deg:
     • plot the error of approximation
 
 remark: When testing our routines, changing the values inside the python function define_domain(),
-from 0 to 30, will lead to the creation of complex polynomial curves such as: 0. Unit circle, 1.
+from 0 to 31, will lead to the creation of complex polynomial curves such as: 0. Unit circle, 1.
 Segment [-1,1], 2. Polygon M, 3. Sun, 4. Ellipse, 5. Union of circles, 6. Lune, 7. Cardioid,
 8. 4 lenses, 9. Curve polygon, 10. Limacon, 11. Lissajous, 12. Egg, 13. Rhodonea, 14.
 Habenitch clover, 15. Bifolium, 16. Torpedo, 17. Double egg, 18. L. Sautereau butterfly 1,
 19. L. sautereau Butterfly 2, 20. Borromean circles, 23. Laporte heart, 24. Epicycloid, 25.
 Epitrochoid, 26. Hypocycloid, 27. Nephroid, 28. Talbot curve, 29. Tricuspoid, 30. Rectan-
-gles+circles, 31. 31. Equilateral triangle.
+gles+circles, 31. Equilateral triangle.
 
 ## License
 
@@ -284,8 +285,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - Marco Vianello  <marcov@math.unipd.it>
 
 ## Thank you to 
-Prof. Dr. hab. Leokadia Biales-Ciez for her help in developing this work.
+Leokadia Białas-Cież for her help in developing this work.
 
 ## References
-1. L. Białas-Cież, D. J. Kenne, A. Sommariva, and M. Vianello, ``Chebyshev admissible meshes and Lebesgue constants of complex polynomial projections," J. Comput. Appl. Math., vol. 443, p. 115766, 2024.
+1. L. Białas-Cież, D. J. Kenne, A. Sommariva, and M. Vianello, "Chebyshev admissible meshes and Lebesgue constants of complex polynomial projections", J. Comput. Appl. Math., vol. 443, p. 115766, 2024.
 
