@@ -54,7 +54,7 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
 
 ### 1. demo (this is the main demo)
- In order to run the demo you need to open the file demo.py, scroll till its bottom, there provide the following information:
+ In order to run this demo you need to open the file demo.py, scroll till its bottom, there provide the following information:
 
     • The degree of interpolation, deg, greater than 0
 
@@ -87,7 +87,6 @@ Example
 
  Demo on computing Lebesgue constant
  
-'''
 ================================================================================
 domain                                   circle of center 0 and radius 1         
 Interp. nodes                            Discrete Leja points                    
@@ -102,7 +101,8 @@ Card. mesh Leb. const.                   8
 number of interpolation points           2                                       
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4                                       
+Card mesh for extracting the nodes       4         
+
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -118,7 +118,8 @@ Card. mesh Leb. const.                   8
 number of interpolation points           2                                       
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4                                       
+Card mesh for extracting the nodes       4       
+
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -134,7 +135,8 @@ Card. mesh Leb. const.                   8
 number of interpolation points           2                                       
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4                                       
+Card mesh for extracting the nodes       4      
+
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -150,7 +152,8 @@ Card. mesh Leb. const.                   8
 number of interpolation points           4                                       
 Mesh interp. nodes degree                1                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       4                                       
+Card mesh for extracting the nodes       4          
+
 ================================================================================
 
  Demo on computing Lebesgue constant
@@ -169,7 +172,8 @@ Card. mesh Leb. const.                   16
 number of interpolation points           3                                       
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       8                                       
+Card mesh for extracting the nodes       8                
+
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -185,7 +189,8 @@ Card. mesh Leb. const.                   16
 number of interpolation points           3                                       
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       8                                       
+Card mesh for extracting the nodes       8                    
+
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -201,7 +206,8 @@ Card. mesh Leb. const.                   16
 number of interpolation points           3                                       
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       8                                       
+Card mesh for extracting the nodes       8                                
+
 ================================================================================
 ================================================================================
 domain                                   circle of center 0 and radius 1         
@@ -217,9 +223,10 @@ Card. mesh Leb. const.                   16
 number of interpolation points           8                                       
 Mesh interp. nodes degree                2                                       
 Mesh interp. nodes factor                2                                       
-Card mesh for extracting the nodes       8                                       
+Card mesh for extracting the nodes       8                                      
+
 ================================================================================
-'''
+
 Remark: All figures are save in the folder figures
 
 
