@@ -1,5 +1,5 @@
 # Python version of CPOLYMESH
-There is a Matlab version at https://github.com/alvisesommariva/CPOLYMESH, whose author is Alvise Sommariva. For a full description of the software, see the paper:
+There is a Matlab version whose author is Alvise Sommariva, available at https://github.com/alvisesommariva/CPOLYMESH. For a full description of the software, see the paper:
 
 Dimitri J. Kenne, Alvise Sommariva and Marco Vianello, CPOLYMESH: Matlab and Python codes for complex polynomial approximation by Chebyshev admissible meshes
 ## Table of Contents
