@@ -70,7 +70,9 @@ def demo_cpom(deg, domain, adm_mesh_param=4, only_deg=True):
         plot_adm_mesh(adm_mesh[0], deg=deg)
     else:
         for d, mesh in enumerate(adm_mesh[0]):
-            plot_adm_mesh(mesh, deg=d+1)
+            plt.figure()
+            plot_adm_mesh(mesh, deg=d+1, display=True, display_block=False)
+        plt.show()
 
     # Display the result
     
@@ -92,7 +94,7 @@ def demo_cpom(deg, domain, adm_mesh_param=4, only_deg=True):
     print("="*60)
 
 
-def plot_adm_mesh(pts, deg=None, display=True):
+def plot_adm_mesh(pts, deg=None, display=True, display_block = True):
     '''
     Plot the complex points inside pts
 
@@ -116,7 +118,7 @@ def plot_adm_mesh(pts, deg=None, display=True):
             plt.title(f'AM of degree {deg}')
         plt.legend()
         plt.axis('equal')
-        plt.show()
+        plt.show(block=display_block)
 
 # -----------------------------------------------------------------------------
 

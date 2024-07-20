@@ -2,7 +2,7 @@
 """
 Created on Sat Jun  1 23:21:10 2024
 
-Updated on June 1, 2024
+Updated on July 21, 2024
 
 @author: Dimitri Jordan Kenne
 
@@ -28,11 +28,13 @@ see the LICENSE file for details.
 # ------------------------------import packages---------------------------------
 # pylint: disable=invalid-name
 
-from cfit import Cfit
-from discrete_extremal_sets_constructor.cdes import Cdes
 from domains_structure.examples_of_domains import define_domain
-import numpy as np
+from domains_structure.find_best_grid import find_best_grid
+from discrete_extremal_sets_constructor.cdes import Cdes
+from polynomial_projectors.cfit import Cfit
 import matplotlib.pyplot as plt
+import numpy as np
+import os
 
 # ------------------------------------------------------------------------------
 
@@ -75,25 +77,13 @@ def demo_cfit(deg, f, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
     fdomain_grid = np.array([f(x) for x in domain_grid])
 
     errors = [[] for _ in range(n)]  # will contain  log_10(errors)
-    # will contain log_10(errors_on_interp_set_pts)
-    errors_0 = [[] for _ in range(n)]
+    
+    errors_0 = [[] for _ in range(n)] # will contain log_10(errors_on_interp_set_pts)
     for d in range(1, deg+1):
         # Compute the interpolation sets of nodes
         interp_pts, A = Cdes(d, domain, adm_mesh_param, pts_type=pts_type)
-        
-        # Plot the extremal points for the degree d=deg
-        if d == deg:
-            Y_1 = [y.real for y in A]
-            Y_2 = [y.imag for y in A]
-            for i, X in enumerate(interp_pts):
-                if pts_type[i] != 'lsqp':
-                    X_1 = [x.real for x in X]
-                    X_2 = [x.imag for x in X]
-                    plt.plot(X_1, X_2, 'ro', label=pts_type[i], markersize=5)
-                    plt.plot(Y_1, Y_2, 'b.', label='AM', markersize=1)
-                    plt.legend()
-                    plt.axis('equal')
-                    plt.show()
+                    
+        # compute the errors of interpolation
         for i, X in enumerate(interp_pts):
             fX = [f(x) for x in X]
             L = Cfit(d, X, fX, domain_grid)
@@ -103,13 +93,14 @@ def demo_cfit(deg, f, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
             errors[i].append(np.log10(error))
             errors_0[i].append(np.log10(error_0))
 
+            # Display the statistics
             if pts_type[i] == 'lsqp':
                 print('\n Demo discrete least square polynomial')
             else:
                 print('\n Demo polynomial interpolation')
                 nodes_type= pts_type[i]
             statistics = {
-                'interp_points' : nodes_type,
+                'interp. points' : nodes_type,
                 'degree' : d,
                 'Approximation error': error,
                 'Approx. error on interp. pts set': error_0
@@ -119,16 +110,56 @@ def demo_cfit(deg, f, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
                print(f"{key:<40} {value:<40}")
             print("="*80)
            
-    # Plot the domain
-        
+    
+    # Define the folder where you want to save the plots
+    output_folder = "figures"
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    # Plot the extremal points for the degree deg
+    Y_1 = [y.real for y in A]
+    Y_2 = [y.imag for y in A]
+
+    ## Create a figure with subplots
+    m = len([pt for pt in pts_type if pt != "lsqp"]) + 1 
+    rows, cols = find_best_grid(m)
+    fig, axs = plt.subplots( rows, cols, figsize=(12, 8))
+    axs = axs.ravel()  # Flatten the array of axes to make indexing easier
+    k = 0 # To track the plots already added to our figure
+
+    for i, X in enumerate(interp_pts):
+        if pts_type[i] != 'lsqp':
+            X_1 = [x.real for x in X]
+            X_2 = [x.imag for x in X]
+            # Plot the extremal points of type pts_type[i]
+            axs[k].plot(X_1, X_2, 'ro', label=pts_type[i], markersize=5)
+
+            # Plot the admissible mesh on the same figure
+            axs[k].plot(Y_1, Y_2, 'b.', label='AM', markersize=1)
+            axs[k].legend()
+            axs[k].axis('equal')
+            # axs[k].set_title('Extremal Points')
+            k +=1
+
     # Plot approximation errors
-    degrees = np.arange(1, deg+1)
+    degrees = np.arange(1, deg + 1)
     for i in range(len(pts_type)):
-        plt.plot(degrees, errors[i], fmt[i], label=pts_type[i], markersize=5)
-    plt.xlabel('degree')
-    plt.ylabel('log_10(error)')
-    plt.legend()
-    plt.axis('equal')
+        axs[k].plot(degrees, errors[i], fmt[i], label=pts_type[i], markersize=5)
+    axs[k].set_xlabel('Degree')
+    axs[k].set_ylabel('log_10(error)')
+    axs[k].legend()
+    axs[k].axis('equal')
+    axs[k].set_title('Approximation Errors')
+    axs[k].grid(True)
+
+    # Adjust layout
+    fig.tight_layout()
+
+    # Save the figure
+    plot_path = os.path.join(output_folder, 'cfit_plots.png')
+    fig.savefig(plot_path)
+
+    # Optionally display the figure
     plt.show()
 
 

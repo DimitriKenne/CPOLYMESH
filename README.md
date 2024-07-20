@@ -51,7 +51,8 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
     ```
 
 2. Install Dependencies:
-    pip install numpy scipy matplotlib
+    pip install -r requirements.txt
+
 
 
 
@@ -84,7 +85,8 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
     • plot the Lebesgue constants on one figure.
 
-After running the file demo.py for the first time, you can also type demo(2,define_domain(0)) directly from the terminal in order to run the demo with deg=2 and domain Num. 0. 
+
+After running `demo.py` for the first time, you can directly execute `demo(2, define_domain(0))` in the IPython Console within Spyder or in the interactive session created by running `python -i demo.py` from the terminal in VSCode. This will run the demo with `deg=2` and domain number 0.
 
 
 Example:

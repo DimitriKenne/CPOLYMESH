@@ -2,7 +2,7 @@
 """
 Created on Thu Jun 13 17:20:13 2024
 
-Updated on Jun 13, 2024
+Updated on July 21, 2024
 
 @author: Dimitri Jordan Kenne
 
@@ -27,12 +27,14 @@ see the LICENSE file for details.
 # ------------------------------import packages---------------------------------
 # pylint: disable=invalid-name
 
-import numpy as np
-import matplotlib.pyplot as plt
-from polynomial_mesh_constructor.cpom import Cpom
+from domains_structure.examples_of_domains import define_domain
+from domains_structure.find_best_grid import find_best_grid
 from discrete_extremal_sets_constructor.cdes import Cdes
 from lebesgue_constant_evaluator.cleb import Cleb
-from domains_structure.examples_of_domains import define_domain
+from polynomial_mesh_constructor.cpom import Cpom
+import matplotlib.pyplot as plt
+import numpy as np
+import os
 
 # ------------------------------------------------------------------------------
 
@@ -77,20 +79,8 @@ def demo(deg, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
 
         # Compute the interpolation sets of nodes
         interp_pts, A = Cdes(d, domain, adm_mesh_param_ep, pts_type)
-        
-        if d == deg:
-            Y_1 = [y.real for y in A]
-            Y_2 = [y.imag for y in A]
-            for i, X in enumerate(interp_pts):
-                if pts_type[i] != 'lsqp':
-                    X_1 = [x.real for x in X]
-                    X_2 = [x.imag for x in X]
-                    plt.plot(X_1, X_2, 'ro', label=pts_type[i], markersize=5)
-                    plt.plot(Y_1, Y_2, 'b.', label='AM', markersize=1)
-                    plt.legend()
-                    plt.axis('equal')
-                    plt.show()
-        
+
+        # Compute Lebesgue constants
         print('\n Demo on computing Lebesgue constant\n')
         for i in range(n):
             leb_const = Cleb(d, interp_pts[i], mesh[0])
@@ -131,22 +121,68 @@ def demo(deg, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
                print(f"{key:<40} {value:<40}")
             print("="*80)
 
-    degrees = np.arange(1, deg+1)
-    for i in range(n):
-        plt.plot(degrees, leb[i], fmt[2], label=pts_type[i], markersize=5)
-    plt.legend()
-    plt.title('Lebesgue constant')
-    plt.xlabel('degree')
-    plt.ylim(top = deg)
+    
+    # Define the folder where you want to save the plots
+    output_folder = "figures"
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    # Plot the extremal points for the degree deg
+    Y_1 = [y.real for y in A]
+    Y_2 = [y.imag for y in A]
+
+    ## Create a figure with subplots
+    m = len([pt for pt in pts_type if pt != "lsqp"]) + 1 
+    rows, cols = find_best_grid(m)
+    fig, axs = plt.subplots( rows, cols, figsize=(12, 8))
+    axs = axs.ravel()  # Flatten the array of axes to make indexing easier
+    k = 0 # To track the plots already added to our figure
+
+    for i, X in enumerate(interp_pts):
+        if pts_type[i] != 'lsqp':
+            X_1 = [x.real for x in X]
+            X_2 = [x.imag for x in X]
+            
+            # Plot the extremal points of type pts_type[i]
+            axs[k].plot(X_1, X_2, 'ro', label=pts_type[i], markersize=5)
+
+            # Plot the admissible mesh on the same figure
+            axs[k].plot(Y_1, Y_2, 'b.', label='AM', markersize=1)
+            axs[k].legend()
+            axs[k].axis('equal')
+            # axs[k].set_title('Extremal Points')
+            k +=1
+            
+    # Plot Lebesgue constants
+    degrees = np.arange(1, deg + 1)
+    for i in range(len(pts_type)):
+        axs[k].plot(degrees, leb[i], fmt[2], label = pts_type[i], markersize=5)
+    axs[k].set_xlabel('Degree')
+    axs[k].legend()
+    axs[k].axis('equal')
+    #axs[k].set_ylim(top=deg)
+    axs[k].set_xlim([0,deg+1])
+    axs[k].set_title('Lebesgue constant')
+    axs[k].grid(True)
+    
+    # Adjust layout
+    fig.tight_layout()
+
+    # Save the figure
+    plot_path = os.path.join(output_folder, 'demo_plots.png')
+    fig.savefig(plot_path)
+
+    # Optionally display the figure
     plt.show()
+
 
 
 fmt = ["-^", '-*', '-o', '-s']
 # -----------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 # Set the degree of approximation
-deg = 20
+deg = 10
 
 # To select a domain, choose a number from 0 to 31 and input it into the
 # define_domain function.

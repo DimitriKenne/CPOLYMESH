@@ -2,7 +2,7 @@
 """
 Created on Sat Jun  1 23:21:10 2024
 
-Updated on June 1, 2024
+Updated on July 21, 2024
 
 @author: Dimitri Jordan Kenne
 
@@ -28,12 +28,15 @@ see the LICENSE file for details.
 # ------------------------------import packages---------------------------------
 # pylint: disable=invalid-name
 
-import numpy as np
-import matplotlib.pyplot as plt
-from polynomial_mesh_constructor.cpom import Cpom
-from discrete_extremal_sets_constructor.cdes import Cdes
-from lebesgue_constant_evaluator.cleb import Cleb
 from domains_structure.examples_of_domains import define_domain
+from discrete_extremal_sets_constructor.cdes import Cdes
+from polynomial_mesh_constructor.cpom import Cpom
+from lebesgue_constant_evaluator.cleb import Cleb
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+
 
 # ------------------------------------------------------------------------------
 
@@ -107,7 +110,7 @@ def demo_cleb(deg, domain, pts_type=['DLP', 'PLP', 'AFP', 'lsqp'],
             'Absolute err. est.': abs_error_est,
             'Card. admiss. mesh Lesb. const.': len(mesh),
             'number of interpolation points': len(interp_pts[i]),
-            'Card mesh for extracting the nodes': len(A)
+            'Card. mesh for extracting the nodes': len(A)
             }
         
         print("="*80)
