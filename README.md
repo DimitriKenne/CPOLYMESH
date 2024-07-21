@@ -236,7 +236,7 @@ Remark: All figures are save in the folder figures
 
 
 ### 2. demo_cleb
-In order to run this demo, open the file demo_cleb.py from the package lebesgue_constant_evaluator, provide the degree, choose the domain and then run the file.
+In order to run this demo, open the file `demo_cleb.py` from the package lebesgue_constant_evaluator, provide the degree, choose the domain and then run the file.
 
 The following tasks will be performed:  
 
@@ -247,12 +247,12 @@ The following tasks will be performed:
     • compute a certified Lebesgue constant.
 
 ### 3. demo_cpom
-In order to run this demo, open the file demo_cpom.py from the folder polynomial_mesh_constructor, provide the degree, choose the domain and then run the file.
+In order to run this demo, open the file `demo_cpom.py` from the folder polynomial_mesh_constructor, provide the degree, choose the domain and then run the file.
 
-The admissible mesh of degree deg will be computed and the points will be shown on a figure.
+The admissible mesh of degree `deg` will be computed and the points will be shown on a figure.
 
 ### 4. demo_cdes
-In order to run this demo, open the file demo_cdes.py from the folder discrete_extremal_sets_constructor, provide the degree, choose the domain and then run the file.
+In order to run this demo, open the file `demo_cdes.py` from the folder discrete_extremal_sets_constructor, provide the degree, choose the domain and then run the file.
 
 The following tasks will be performed:
 
@@ -263,7 +263,7 @@ The following tasks will be performed:
     • plot the extremal points on separate figures
 
 ### 5. demo_cfit
-In order to run this demo, open the file demo_cfit.py from the folder polynomial_projectors, define a function for approximation, provide the degree, choose the domain and then run the file.
+In order to run this demo, open the file `demo_cfit.py` from the folder polynomial_projectors, define a function for approximation, provide the degree, choose the domain and then run the file.
 
 The following tasks will be performed for each degree $d = 1, \dots, \text{deg}$:
 

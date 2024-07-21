@@ -2,7 +2,7 @@
 """
 Created on Sat Dec 31 17:49:32 2022
 
-Updated on May 30, 2024
+Updated on July 21, 2024
 
 @author: Dimitri Jordan Kenne
 -------
@@ -82,7 +82,7 @@ def demo_cdes(deg, domain, pts_type=np.array(['DLP', 'PLP', 'AFP']),
 
 
 # Set the degree of approximation
-deg = 50
+deg = 10
 
 # To select a prebuilt domain, choose a number from 0 to 31 and input it into
 # the define_domain function.

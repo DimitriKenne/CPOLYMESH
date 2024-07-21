@@ -2,7 +2,7 @@
 """
 Created on Sat Oct  7 13:25:41 2023
 
-Updated on May 30, 2024
+Updated on July 21, 2024
 
 @author: Dimitri Jordan Kenne
 
@@ -32,14 +32,12 @@ see the LICENSE file for details.
 from domains_structure.examples_of_domains import define_domain
 from polynomial_mesh_constructor.cpom import Cpom
 import matplotlib.pyplot as plt
+import os
 
 # ------------------------------------------------------------------------------
-
-
 def demo_cpom(deg, domain, adm_mesh_param=4, only_deg=True):
     '''
     This demo shows how to compute an admissible mesh 
-
 
     Parameters
     ----------
@@ -58,28 +56,29 @@ def demo_cpom(deg, domain, adm_mesh_param=4, only_deg=True):
     Returns
     -------
     None.
-
     '''
 
     # Compute the admissible mesh
     adm_mesh = Cpom(deg, domain, adm_mesh_param, only_deg=only_deg)
     print('\t The admissible mesh is\n', adm_mesh[0])
-
+    
+    # Create a directory for figures if it doesn't exist
+    if not os.path.exists('figures'):
+        os.makedirs('figures')
+    
     # Plot the admissible mesh
-    if only_deg == True:
-        plot_adm_mesh(adm_mesh[0], deg=deg)
+    if only_deg:
+        plot_adm_mesh(adm_mesh[0], deg=deg, save=True, 
+                      filename='figures/adm_mesh_deg_{}.png'.format(deg))
     else:
         for d, mesh in enumerate(adm_mesh[0]):
-            plt.figure()
-            plot_adm_mesh(mesh, deg=d+1, display=True, display_block=False)
+            plot_adm_mesh(mesh, deg=d+1, save=True, 
+                          filename='figures/adm_mesh_deg_{}.png'.format(d+1),
+                          display_block=False)
         plt.show()
-
-    # Display the result
     
-    if only_deg == True:
-        card_adm_mesh = len(adm_mesh[0])
-    else:
-       card_adm_mesh = len(adm_mesh[0][-1])
+    # Display the result
+    card_adm_mesh = len(adm_mesh[0]) if only_deg else len(adm_mesh[0][-1])
     statistics = {
         'domain': domain.name,
         'degree': deg,
@@ -93,8 +92,7 @@ def demo_cpom(deg, domain, adm_mesh_param=4, only_deg=True):
         print(f"{key:<20} {value:<40}")
     print("="*60)
 
-
-def plot_adm_mesh(pts, deg=None, display=True, display_block = True):
+def plot_adm_mesh(pts, deg=None, save=False, filename=None, display=True, display_block=True):
     '''
     Plot the complex points inside pts
 
@@ -102,29 +100,35 @@ def plot_adm_mesh(pts, deg=None, display=True, display_block = True):
     ----------
     pts : array
         The set of points to plot.
-    display : bool, optional
-        Specify whether to plt.show() or not. The default is True.
+    save : bool, optional
+        Specify whether to save the plot. The default is False.
+    filename : str, optional
+        The filename to save the plot as. Required if save is True.
 
     Returns
     -------
     None.
-
     '''
     X = [x.real for x in pts]
     Y = [x.imag for x in pts]
+    plt.figure()
     plt.plot(X, Y, 'bo', label='AM', markersize=1)
-    if display == True:
-        if deg is not None:
-            plt.title(f'AM of degree {deg}')
-        plt.legend()
-        plt.axis('equal')
+    if deg is not None:
+        plt.title(f'AM of degree {deg}')
+    plt.legend()
+    plt.axis('equal')
+    
+    if save:
+        if filename is None:
+            raise ValueError("Filename must be specified if save is True.")
+        plt.savefig(filename)
+    
+    if display:    
         plt.show(block=display_block)
 
 # -----------------------------------------------------------------------------
-
-
 # Set the degree of approximation
-deg = 10
+deg = 3
 
 # To select a prebuilt domain, choose a number from 0 to 31 and input it into
 # the define_domain function.
