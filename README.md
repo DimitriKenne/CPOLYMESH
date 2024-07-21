@@ -51,7 +51,9 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
     ```
 
 2. Install Dependencies:
+   ```
     pip install -r requirements.txt
+   ```
 
 
 
