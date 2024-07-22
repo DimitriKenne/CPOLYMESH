@@ -275,11 +275,11 @@ The following tasks will be performed for each degree $d = 1, \dots, \text{deg}$
 
     • compute the polynomial of interpolation associated with each extremal set and compute the discrete least squares polynomial fitting the whole admissible mesh.
 
-    • compute the error of approximation    
+    • compute the errors of approximation    
 
-    • plot the error of approximation
+    • plot the errors of approximation
 
-remark: When testing our routines, changing the values inside the python function define_domain(),
+remark: When testing our routines, changing the values inside the python function `define_domain()`,
 from 0 to 31, will lead to the creation of complex polynomial curves such as: 0. Unit circle, 1.
 Segment [-1,1], 2. Polygon M, 3. Sun, 4. Ellipse, 5. Union of circles, 6. Lune, 7. Cardioid,
 8. 4 lenses, 9. Curve polygon, 10. Limacon, 11. Lissajous, 12. Egg, 13. Rhodonea, 14.
