@@ -64,7 +64,7 @@ If users prefer not to use Anaconda, then you can install the dependencies direc
 
 
 ### 1. demo (this is the main demo)
- In order to run this demo you need to open the file demo.py, scroll till its bottom, there provide the following information:
+ In order to run this demo you need to open the file `demo.py`, scroll till its bottom, there provide the following information:
 
     • The degree of interpolation, deg, greater than 0:
         Example: deg = 2
